@@ -40,18 +40,20 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
+# Unpack the artifact from the build job
+# and deploy to Azure Web App
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
         with:
           name: node-app
-
+          path: frontend.tar.gz
+        
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'tokenizacion-aqua'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_41755E870D1D47CB8F132EE2DA2FEAD5 }}
-          package: .
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b }}
+          package: frontend.tar.gz

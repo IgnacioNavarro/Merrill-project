@@ -19,7 +19,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </Head>
       <main
         ref={element}
-        className="m-auto md:max-w-[430px] md:max-h-[630px] w-full h-full bg-navy border-2 border-navy overflow-y-scroll relative"
+        className="m-auto md:max-w-[430px] md:max-h-[880px]  w-full h-full bg-navy border-2 border-navy overflow-y-scroll relative"
       >
         {children}
       </main>

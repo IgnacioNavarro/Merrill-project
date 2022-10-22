@@ -1,14 +1,10 @@
 import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
 import BlueButton from "../components/BlueButton";
 import Card from "../components/Card";
 import Drawer from "../components/Drawer";
-import Layout from "../components/Layout";
 import LayoutSub from "../components/LayoutSub";
 import NftCard from "../components/NftCard";
 import TopBar from "../components/TopBar";
-import styles from "../styles/Home.module.css";
 // import fonts
 
 const Home: NextPage = () => {
@@ -26,24 +22,24 @@ const Home: NextPage = () => {
 
       <Drawer>
         <div className="flex flex-col cursor-pointer font-medium text-white w-24 text-center text-xs break-all">
-          <img className="h-5 mb-1" src="/component/icon-search.svg" />
+          <img className="h-5 mb-2" src="/component/icon-search.svg" />
           <p>Buscar movi&shy;mie&shy;ntos</p>
         </div>
 
         <div className="ml-5 flex flex-col cursor-pointer font-medium text-white w-24 text-center text-xs break-all">
-          <img className="h-5 mb-1" src="/component/icon-request.svg" />
+          <img className="h-5 mb-2" src="/component/icon-request.svg" />
           <p>Recibir activos</p>
         </div>
 
         <div className="ml-5 flex flex-col cursor-pointer font-medium text-white w-24 text-center text-xs break-all">
-          <img className="h-5 mb-1" src="/component/icon-transfer.svg" />
+          <img className="h-5 mb-2" src="/component/icon-transfer.svg" />
           <p>Transferencias</p>
         </div>
       </Drawer>
       <div className="p-5 pb-20 bg-gray-200">
         <NftCard
           name="Lebron Experience"
-          shortDesc="Veneficio"
+          shortDesc="Acceso prioritario"
           transferable
           id={1}
         />

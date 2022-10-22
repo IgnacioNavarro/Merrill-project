@@ -49,3 +49,11 @@ a {
     background: black;
   }
 }
+
+ul {
+  list-style: disc;
+}
+
+ul li:not(:first-child) {
+  margin-top: 0.5rem;
+}

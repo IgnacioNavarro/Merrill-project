@@ -5,6 +5,12 @@ type Data = {
   name: string
 }
 
+/**
+ * Transfiere activo desde dirección pasada por parametro,
+ * a la direccion pasada por parametro
+ * @param req 
+ * @param res 
+ */
 export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>

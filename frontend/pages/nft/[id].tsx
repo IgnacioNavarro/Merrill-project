@@ -1,14 +1,11 @@
 import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
-import BlueButton from "../components/BlueButton";
-import Card from "../components/Card";
-import Drawer from "../components/Drawer";
-import Layout from "../components/Layout";
-import LayoutSub from "../components/LayoutSub";
-import NftCard from "../components/NftCard";
-import TopBar from "../components/TopBar";
-import styles from "../styles/Home.module.css";
+import BlueButton from "../../components/BlueButton";
+import Card from "../../components/Card";
+import Drawer from "../../components/Drawer";
+import Layout from "../../components/Layout";
+import LayoutSub from "../../components/LayoutSub";
+import NftCard from "../../components/NftCard";
+import TopBar from "../../components/TopBar";
 // import fonts
 
 const Home: NextPage = () => {

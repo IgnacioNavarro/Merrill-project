@@ -83,4 +83,28 @@ contract AquaTokens is ERC721, Ownable {
         
         
     }
+
+    function getTokenUri(uint256 tokenId) public view returns(string memory)
+    {
+        return tokenURI(tokenId);
+    }
+
+
+    function getTokensFromUser(address addr) public view returns(uint256[] memory)
+    {
+        uint256 userBalance = balanceOf(addr);
+        uint256[] memory tokenIds = new uint256[](userBalance);
+        uint256 cont = 0;
+        for(uint256 i = 1; i < totalSupply+1; i++){
+            address owner = ownerOf(i);
+            if(owner == addr) {
+                tokenIds[cont] = i;
+                cont++;
+                if(tokenIds[userBalance-1] != 0){
+                    break;
+                }
+            }
+        }
+        return tokenIds;
+    }
 }

@@ -1,9 +1,34 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'BBVA Benton Sans Book';
+  src: url('/fonts/BentonSansBBVA-Book-Lite.woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BBVA Benton Sans Medium';
+  src: url('/fonts/BentonSansBBVA-Medium-Lite.woff2');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BBVA Benton Sans Bold';
+  src: url('/fonts/BentonSansBBVA-Bold-Lite.woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'BBVA Benton Sans Book';
 }
 
 a {
@@ -23,4 +48,16 @@ a {
     color: white;
     background: black;
   }
+}
+
+ul {
+  list-style: disc;
+}
+
+ul li:not(:first-child) {
+  margin-top: 0.5rem;
+}
+
+#nft-full-container > .hover-3d {
+  height: 100%;
 }

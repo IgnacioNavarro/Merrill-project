@@ -150,9 +150,8 @@ const Home: NextPage = () => {
         {!isLoading && (
           <>
             {NFTs!.map((nft:any,i) => (
-              <div className="pb-5">
+              <div className="pb-5" key={i}>
               <NftCard
-                key={i}
                 name={nft.name}
                 transferible
                 image={nft.image}

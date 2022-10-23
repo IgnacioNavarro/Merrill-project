@@ -18,7 +18,7 @@ import { motion, Variants, AnimatePresence } from "framer-motion";
 const variants: Variants = {
   // hidden: { opacity: 0.2, y: 0 },
   initial: { opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeOut" } },
-  hidden: { opacity: 0, y: 400, transition: { duration: 0.3, ease: "easeIn" } },
+  hidden: { opacity: 1, y: 400, transition: { duration: 0.3, ease: "easeIn" } },
 };
 
 const variantsnftNoFull: Variants = {

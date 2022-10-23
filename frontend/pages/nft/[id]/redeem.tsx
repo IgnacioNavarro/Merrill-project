@@ -30,6 +30,7 @@ const variantsNftFull: Variants = {
 
 const Home: NextPage = () => {
   const router = useRouter();
+  const id = router.query.id;
   const [currentTab, setCurrentTab] = useState(0);
 
   return (
@@ -122,12 +123,12 @@ const Home: NextPage = () => {
             )}
             <div className="flex justify-center w-full mt-10">
               {currentTab === 0 ? (
-                <ButtonAction>
+                <ButtonAction onClick={() => router.push('/nft/'+id+'/sign')}>
                   <img className="h-5 mr-2" src="/component/icon-qr.svg" />
                   Mostrar código
                 </ButtonAction>
               ) : (
-                <ButtonSand>
+                <ButtonSand onClick={() => router.push('/nft/'+id+'/confirm')}>
                   <img className="h-5 mr-2" src="/component/icon-qr.svg" />
                   Mostrar código
                 </ButtonSand>

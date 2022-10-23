@@ -81,6 +81,8 @@ const Home: NextPage = () => {
     if (isConnected) { return; }
     if (typeof window.ethereum != "undefined") {
       await requestAccount(setWalletAddress, setIsConnected);
+    }else{
+      return;
     }
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const contractAddress = "0xC4eA19a00Baee3DD64E998bF7177874e45C0154D";
@@ -167,7 +169,7 @@ const Home: NextPage = () => {
 
             <div className="pb-5" key={1}>
               <NftCard
-                name={"NFT de prueba"}
+                name={"NFT de prueba conectado"}
                 transferible
                 image={"/nft/nft.png"}
               />
@@ -176,6 +178,14 @@ const Home: NextPage = () => {
           </>
 
         )}
+
+        <div className="pb-5" key={1}>
+          <NftCard
+            name={"NFT de prueba sin conectar"}
+            transferible
+            image={"/nft/nft.png"}
+          />
+        </div>
 
         <h2 className="select-none cursor-pointer flex justify-center text-sm mt-10 font-medium text-medium-blue">
           Ver activos ya utilizados

@@ -3,7 +3,7 @@ import TopBar from "../components/TopBar";
 import { useEffect, useState } from 'react';
 import { create, CID, IPFSHTTPClient } from "ipfs-http-client";
 import { sendFileToIPFS, ipfsJSON } from "../components/ipfs";
-
+import ButtonAction from "../components/ButtonAction";
 
 
 
@@ -11,10 +11,10 @@ import { sendFileToIPFS, ipfsJSON } from "../components/ipfs";
 
 const SmallCom: NextPage = () => {
     const [buffer, setBuffer] = useState("");
-    //const [nombreEmpresa, setNombreEmpresa] = React.useState([]);
-    //const [nombreColeccion, setNombreColeccion] = React.useState([]);
-    //const [ventajaHolder, setventajaHolder] = React.useState([]);
-    //const [ventajaUso, setventajaUso] = React.useState([]);
+    const [nombreEmpresa, setNombreEmpresa] = useState([]);
+    const [nombreColeccion, setNombreColeccion] = useState([]);
+    const [ventajaHolder, setventajaHolder] = useState([]);
+    const [ventajaUso, setventajaUso] = useState([]);
 
 
     const onChangeInput = async (event: React.FormEvent<HTMLInputElement>) => {
@@ -30,19 +30,7 @@ const SmallCom: NextPage = () => {
         console.log("Uploading file: ", file.name, file);
 
         sendFileToIPFS(file);
-
-
-
-        /*
-        const result = await (ipfs).add(file);
-        
-        
-        console.log("Uploaded file:", result.path, result.cid.toString());
-        
-        */
     };
-
-
 
 
 
@@ -70,21 +58,23 @@ const SmallCom: NextPage = () => {
                     <div className="pb-6">
                         <p className="select-none w-full transition-colors relative drop-shadow-md py-2 text-gray-600 font-extrabold flex items-center justify-start">Tipo de beneficio:</p>
                         <select name="Usos" className="w-80 h-10 bg-gray-100 border-b-[1px] border-gray-600 p-2 outline-none">
-                            <option value="Transferible" selected>Transferible</option>
+                            <option hidden selected>Selecciona una opción</option>
+                            <option value="Transferible">Transferible</option>
                             <option value="NoTransferible">No Transferible</option>
                         </select>
                     </div>
                     <div className="pb-6">
                         <p className="select-none w-full transition-colors relative drop-shadow-md py-2 text-gray-600 font-extrabold flex items-center justify-start">Número de coleccionables a crear:</p>
-                        <input type={"number"} className="w-80 h-10 bg-gray-100 border-b-[1px] border-gray-600 p-2 outline-none" placeholder={"Cantidad de tokens"} required />
+                        <input type={"number"} className="w-80 h-10 bg-gray-100 border-b-[1px] border-gray-600 p-2 outline-none" placeholder={"Cantidad de tokens"} required min="0" />
                     </div>
                     <div className="pb-[30px]">
                         <input type='file' name="file" className="" onChange={(e: React.FormEvent<HTMLInputElement>) => {
                             onChangeInput(e);
                         }} />
                     </div>
-
-                    <input type={"submit"} className="bg-core-light-blue active:bg-medium-blue transition-colors text-white font-medium py-3 px-6 flex items-center" value={"Crear Colección"} />
+                    <ButtonAction>
+                        Canjear beneficio
+                    </ButtonAction>
                     <br />
                     <br />
                 </form>

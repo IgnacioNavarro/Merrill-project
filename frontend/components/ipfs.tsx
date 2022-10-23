@@ -3,11 +3,6 @@ import { create, CID, IPFSHTTPClient } from "ipfs-http-client";
 import axios from 'axios';
 
 
-
-const projectId = '<YOUR PROJECT ID>';
-const projectSecret = '<YOUR PROJECT SECRET>';
-const auth = "Basic " + btoa(projectId + ":" + projectSecret);
-
 const ipfsJSON = async (data: any) => {
 
     const resJSON = await axios({

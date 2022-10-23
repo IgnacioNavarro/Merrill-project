@@ -16,6 +16,8 @@ contract AquaTokens is ERC721, Ownable {
     mapping(uint256 => bool) isTradeable;
     //the token can be burned in order to receive the soulbound token
     mapping(uint256 => bool) isBurned;
+    //Gewt the specific hash from a token
+    mapping(uint256 => string) tokenHashes;
 
 
     constructor() payable ERC721('Aqua Tokens', 'AQUA') {
@@ -29,7 +31,7 @@ contract AquaTokens is ERC721, Ownable {
 
     function tokenURI(uint256 tokenId_) public view override returns (string memory) {
         require(_exists(tokenId_), "Token does not exist!");
-        return string(abi.encodePacked(baseTokenUri, Strings.toString(tokenId_), ".json"));
+        return string.concat(baseTokenUri, tokenHashes[tokenId_]);
     }
 
     function _beforeTokenTransfer(address from, address to, uint256 id) view override internal {
@@ -45,50 +47,31 @@ contract AquaTokens is ERC721, Ownable {
         isBurned[tokenId] = true;
     }
 
-    //TODO: withdraw()????
-    /*
-    function withdraw() external onlyOwner {
-        (bool success, ) = withdrawWallet.call{ value: address(this).balance }('');
-        require(success, 'withdraw failed');
-    }
-    */
 
     //The owner mints the NFT pointing to the receiver
-    //TODO: NOT PAYABLE?
-    function mint(address receiver, bool tradeable) payable external onlyOwner{
+    function mint(address receiver, bool tradeable, string memory tokenHash) payable external onlyOwner{
         uint256 newTokenId = totalSupply + 1;
         totalSupply++;
         //0x66E30Ce4FB76f08C431080B1C1C95d97311a4526 -> usuario final -> 666666666
         _safeMint(receiver, newTokenId);
         isTradeable[newTokenId] = tradeable;
         isBurned[newTokenId] = false;
-        
+        tokenHashes[newTokenId] = tokenHash;
     }
 
     //The commerce will mint a batch of NFT that will receive in their own wallet
-    //TODO: NOT PAYABLE?
-    function commerceMint(address commerceWallet, uint256 quantity_, bool tradeable) payable external onlyOwner{
-        //There's no need to pay for the nft
-        //require(msg.value == quantity_ * mintPrice, 'wrong mint value');
-        //No max supply at first
-        //require(totalSupply + quantity_ <= maxSupply, 'sold out');
-        //No max supply per person
+    function commerceMint(address commerceWallet, uint256 quantity_, bool tradeable, string memory tokenHash) payable external onlyOwner{
         for(uint256 i = 0; i < quantity_; i++){
                 uint256 newTokenId = totalSupply + 1;
                 totalSupply++;
                 _safeMint(commerceWallet, newTokenId);
                 isTradeable[newTokenId] = tradeable;
                 isBurned[newTokenId] = false;
+                tokenHashes[newTokenId] = tokenHash;
         }
         
         
     }
-
-    function getTokenUri(uint256 tokenId) public view returns(string memory)
-    {
-        return tokenURI(tokenId);
-    }
-
 
     function getTokensFromUser(address addr) public view returns(uint256[] memory)
     {

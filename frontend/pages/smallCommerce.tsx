@@ -10,7 +10,6 @@ import ButtonAction from "../components/ButtonAction";
 
 
 const SmallCom: NextPage = () => {
-    const [buffer, setBuffer] = useState("");
     const [nombreEmpresa, setNombreEmpresa] = useState([]);
     const [nombreColeccion, setNombreColeccion] = useState([]);
     const [ventajaHolder, setventajaHolder] = useState([]);
@@ -19,6 +18,7 @@ const SmallCom: NextPage = () => {
 
     const onChangeInput = async (event: React.FormEvent<HTMLInputElement>) => {
         event.preventDefault();
+        //envio de archivo
         const fileInput = event.target as HTMLInputElement;
         const files = fileInput.files;
 
@@ -28,8 +28,28 @@ const SmallCom: NextPage = () => {
 
         const file = files[0];
         console.log("Uploading file: ", file.name, file);
-
         sendFileToIPFS(file);
+
+        //obtener hash
+        
+    };
+
+
+    const onSubmitForm = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        //envio de archivo
+        const fileInput = event.target as HTMLInputElement;
+        const files = fileInput.files;
+
+        if (!files || files.length === 0) {
+            return alert("No files selected");
+        }
+
+        const file = files[0];
+        console.log("Uploading file: ", file.name, file);
+        sendFileToIPFS(file);
+
     };
 
 
@@ -38,7 +58,7 @@ const SmallCom: NextPage = () => {
         <div>
             <TopBar title="Tokenización Aqua" />
             <div className="bg-white pt-6">
-                <form className="flex flex-col items-center justify-center w-full h-full" onSubmit={() => { }}>
+                <form className="flex flex-col items-center justify-center w-full h-full" onSubmit={() => { onSubmitForm }}>
                     <div className="pb-6">
                         <p className="select-none w-full transition-colors relative drop-shadow-md py-2 text-gray-600 font-extrabold flex items-center justify-start">Nombre de la empresa:</p>
                         <input type={"text"} className="w-80 h-10 bg-gray-100 border-b-[1px] border-gray-600 p-2 outline-none" placeholder={"Nombre de la empresa"} required />
@@ -67,19 +87,19 @@ const SmallCom: NextPage = () => {
                         <p className="select-none w-full transition-colors relative drop-shadow-md py-2 text-gray-600 font-extrabold flex items-center justify-start">Número de coleccionables a crear:</p>
                         <input type={"number"} className="w-80 h-10 bg-gray-100 border-b-[1px] border-gray-600 p-2 outline-none" placeholder={"Cantidad de tokens"} required min="0" />
                     </div>
-                    <div className="pb-[30px]">
+                    <div className="pl-9 pb-[30px]">
                         <input type='file' name="file" className="" onChange={(e: React.FormEvent<HTMLInputElement>) => {
                             onChangeInput(e);
                         }} />
                     </div>
                     <ButtonAction>
-                        Canjear beneficio
+                        Crear Colección
                     </ButtonAction>
                     <br />
                     <br />
                 </form>
-            </div>
-        </div>
+            </div >
+        </div >
 
     );
 };

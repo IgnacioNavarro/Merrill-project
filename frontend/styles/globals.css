@@ -57,3 +57,7 @@ ul {
 ul li:not(:first-child) {
   margin-top: 0.5rem;
 }
+
+#nft-full-container > .hover-3d {
+  height: 100%;
+}

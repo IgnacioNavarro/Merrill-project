@@ -17,7 +17,7 @@ export default function NftCard(props: {
       <div className="ml-5 flex flex-col h-full justify-center">
         <h2 className="font-medium">BBVA</h2>
         <h2 className="font-medium mb-2">{props.name}</h2>
-        <p className="font-book">Veneficio</p>
+        <p className="font-book">Beneficio</p>
         <p className="font-medium text-green-dark">Transferible</p>
       </div>
       <img className="absolute bottom-2 right-2" src="/component/icon-upright.svg" />

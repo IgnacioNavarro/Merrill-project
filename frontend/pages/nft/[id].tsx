@@ -22,17 +22,18 @@ const variants: Variants = {
 };
 
 const variantsnftNoFull: Variants = {
-  initial: {scale: 1},
-  hidden: {scale: 0.9},
+  initial: { scale: 1 },
+  hidden: { scale: 0.9 },
 };
 
 const variantsNftFull: Variants = {
-  initial: {scale: 1},
-  hidden: {scale: 1.2},
+  initial: { scale: 1 },
+  hidden: { scale: 1.2 },
 };
 
 const Home: NextPage = () => {
   const router = useRouter();
+  const id = router.query.id;
   const [isFull, setIsFull] = useState(false);
 
   return (
@@ -99,7 +100,10 @@ const Home: NextPage = () => {
             // animate={isFull ? "hidden" : "initial"}
           >
             <Drawer>
-              <div className="flex flex-col cursor-pointer font-medium text-white w-24 text-center text-xs break-all">
+              <div
+                onClick={() => router.push("/nft/" + id + "/redeem")}
+                className="flex flex-col cursor-pointer font-medium text-white w-24 text-center text-xs break-all"
+              >
                 <img className="h-5 mb-2" src="/component/icon-gift.svg" />
                 <p>
                   Canjear
@@ -142,7 +146,9 @@ const Home: NextPage = () => {
           perderás las ventajas permanentes.
         </WarningText> */}
               <div className="flex justify-center w-full mt-10">
-                <ButtonAction>
+                <ButtonAction
+                  onClick={() => router.push("/nft/" + id + "/redeem")}
+                >
                   <img className="h-5 mr-2" src="/component/icon-gift.svg" />
                   Canjear beneficio
                 </ButtonAction>

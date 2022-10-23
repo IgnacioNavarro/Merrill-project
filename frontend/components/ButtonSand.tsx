@@ -1,4 +1,4 @@
-export default function ButtonAction({
+export default function ButtonSand({
   children,
   className,
   onClick,
@@ -10,7 +10,7 @@ export default function ButtonAction({
   return (
     <button
       onClick={onClick}
-      className={`bg-core-light-blue active:bg-medium-blue transition-colors text-white font-medium py-3 px-6 flex items-center ${className}`}
+      className={`bg-sand-dark active:bg-sand transition-colors text-white font-medium py-3 px-6 flex items-center ${className}`}
     >
       {children}
     </button>

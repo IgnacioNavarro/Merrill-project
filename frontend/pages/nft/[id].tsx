@@ -19,7 +19,7 @@ const Home: NextPage = () => {
 
   return (
     <LayoutSub className="relative">
-      <TopBar />
+      <TopBar title="Cartera Tokenizada"/>
       <div className="p-5 pt-0">
         <div className="w-full flex justify-end mb-5">
           <BlueButton text="Ver a tamaño completo">

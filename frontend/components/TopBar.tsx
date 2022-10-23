@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 
-export default function TopBar() {
+export default function TopBar({title}: {title:string}) {
   const router = useRouter();
   return (
     <div className="flex text-white w-full justify-between p-5 items-center">
@@ -14,7 +14,7 @@ export default function TopBar() {
         <div className="w-8 h-8"></div>
       )}
 
-      <h2>Cartera Tokenizada</h2>
+      <h2>{title}</h2>
       <div className="flex">
         <img
           className="h-5 cursor-pointer"

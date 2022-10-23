@@ -43,17 +43,17 @@ const Home: NextPage = () => {
         const parsedNFTs: any[] = [];
         for (let i = 0; i < cont; i++) {
           const nft = await contract.tokenURI(userNFTS[i]);
-          console.log("nft", "https://ipfs.io/ipfs/"+nft);
+          console.log("nft", "https://ipfs.io/ipfs/" + nft);
 
           //get nft json data from the url
-           
-          const nftData = await fetch("https://ipfs.io/ipfs/"+nft);
+
+          const nftData = await fetch("https://ipfs.io/ipfs/" + nft);
           const nftJson = await nftData.json();
-          nftJson.image = nftJson.image.replace("ipfs://","https://ipfs.io/ipfs/");
+          nftJson.image = nftJson.image.replace("ipfs://", "https://ipfs.io/ipfs/");
           console.log("nftJson", nftJson);
           parsedNFTs.push(nftJson);
           console.log("parsedNFTs", parsedNFTs);
-          
+
         }
         setNFTs(parsedNFTs);
         setIsLoading(false);
@@ -106,12 +106,12 @@ const Home: NextPage = () => {
 
   async function sendNFT(tokenId: number) {
     const finalAddress = "0x66E30Ce4FB76f08C431080B1C1C95d97311a4526";
-    try{
+    try {
       await contract.transferFrom(walletAddress, finalAddress, tokenId);
     } catch {
       console.log("error");
     }
-    
+
   }
 
 
@@ -140,31 +140,46 @@ const Home: NextPage = () => {
         </div>
 
         <div className="ml-5 flex flex-col cursor-pointer font-medium text-white w-24 text-center text-xs break-all"
-         onClick={() => sendNFT(1)}>
+          onClick={() => sendNFT(1)}>
           <img className="h-5 mb-2" src="/component/icon-transfer.svg" />
           <p>Transferencias</p>
         </div>
       </Drawer>
       <div className="p-5 pb-20 bg-gray-200">
 
-        {!isLoading && (
+        {(!isLoading && (NFTs!.length != 0)) && (
           <>
-            {NFTs!.map((nft:any,i) => (
+            {NFTs!.map((nft: any, i) => (
               <div className="pb-5" key={i}>
-              <NftCard
-                name={nft.name}
-                transferible
-                image={nft.image}
-              />
+                <NftCard
+                  name={nft.name}
+                  transferible
+                  image={nft.image}
+                />
               </div>
             ))}
-        </>
-        
+          </>
+
         )}
-            
-            <h2 className="select-none cursor-pointer flex justify-center text-sm mt-10 font-medium text-medium-blue">
-              Ver activos ya utilizados
-            </h2>
+
+        {(!isLoading && (NFTs!.length == 0)) && (
+          <>
+
+            <div className="pb-5" key={1}>
+              <NftCard
+                name={"NFT de prueba"}
+                transferible
+                image={"/nft/nft.png"}
+              />
+            </div>
+
+          </>
+
+        )}
+
+        <h2 className="select-none cursor-pointer flex justify-center text-sm mt-10 font-medium text-medium-blue">
+          Ver activos ya utilizados
+        </h2>
       </div>
     </LayoutSub>
   );
